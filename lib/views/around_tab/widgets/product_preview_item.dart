@@ -10,14 +10,22 @@ class ProductPreviewItem extends StatelessWidget {
   const ProductPreviewItem({
     Key? key,
     required this.product,
+    required this.brandInfo,
   }) : super(key: key);
 
   final Product product;
+  final bool brandInfo;
 
-  static Widget buildProductItem(Product product) {
+  static Widget buildProductItem({
+    required Product product,
+    bool brandInfo = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-      child: ProductPreviewItem(product: product),
+      child: ProductPreviewItem(
+        product: product,
+        brandInfo: brandInfo,
+      ),
     );
   }
 
@@ -30,6 +38,8 @@ class ProductPreviewItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          brandInfo ? _buildBrandInfoHeader() : Container(),
+          // const SizedBox(height: 8.0),
           Expanded(
             flex: 9,
             child: Image.network(
@@ -48,6 +58,36 @@ class ProductPreviewItem extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  Widget _buildBrandInfoHeader() {
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Container(
+              width: 30,
+              height: 30,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: NetworkImage(product.brandProfilePictureUrl),
+                ),
+              ),
+            ),
+            const SizedBox(width: 4),
+            Flexible(
+              child: Text(
+                product.brandId,
+                style: Styles.clickableBrandName,
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 4),
+      ],
     );
   }
 

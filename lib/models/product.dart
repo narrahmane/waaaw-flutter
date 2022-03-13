@@ -9,6 +9,7 @@ class Product {
     required this.currency,
     required this.brandId,
     required this.shopId,
+    required this.brandProfilePictureUrl,
     required this.latitude,
     required this.longitude,
   });
@@ -26,6 +27,7 @@ class Product {
 
   // Brand info.
   final String brandId;
+  final String brandProfilePictureUrl;
 
   // Shop info.
   final String shopId;

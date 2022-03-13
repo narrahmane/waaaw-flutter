@@ -11,6 +11,13 @@ abstract class Styles {
   static TextStyle previewTitle = const TextStyle(
       color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24);
 
+  static TextStyle clickableBrandName = const TextStyle(
+    color: Colors.black,
+    fontSize: 13,
+    fontWeight: FontWeight.bold,
+    overflow: TextOverflow.ellipsis,
+  );
+
   // Colors
   static Color get defaultIconColor => Colors.black;
 

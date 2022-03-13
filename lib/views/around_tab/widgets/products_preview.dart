@@ -4,6 +4,7 @@ import 'package:waaaw/styles.dart';
 import 'package:waaaw/view_models/around_view_model.dart';
 import 'package:waaaw/views/around_tab/widgets/product_preview_item.dart';
 
+import '../../../models/product.dart';
 import '../around_tab_grid_screen.dart';
 
 class ProductsPreview extends StatelessWidget {
@@ -49,18 +50,25 @@ class ProductsPreview extends StatelessWidget {
               width: double.infinity,
               height: MediaQuery.of(context).size.height * 0.35,
               child: GridView.count(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                crossAxisCount: 1,
-                childAspectRatio: 1.6,
-                children:
-                    products.map(ProductPreviewItem.buildProductItem).toList(),
-              ),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  crossAxisCount: 1,
+                  childAspectRatio: 1.6,
+                  children: _buildProductPreviewItems(products)),
             ),
           ],
         );
       },
     );
+  }
+
+  List<Widget> _buildProductPreviewItems(List<Product> products) {
+    List<Widget> productPreviewItems = [];
+    for (var product in products) {
+      productPreviewItems
+          .add(ProductPreviewItem.buildProductItem(product: product));
+    }
+    return productPreviewItems;
   }
 
   void _onGridButtonTap(context, aroundViewModel) {

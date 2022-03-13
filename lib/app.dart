@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:waaaw/styles.dart';
 import 'package:waaaw/view_models/around_view_model.dart';
 import 'package:waaaw/views/around_tab/around_tab_screen.dart';
 
@@ -25,9 +26,27 @@ class WaaawApp extends StatelessWidget {
 CupertinoTabBar _buildCupertinoTabBar() {
   return CupertinoTabBar(
       backgroundColor: CupertinoColors.tertiarySystemBackground,
-      items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(icon: Icon(CupertinoIcons.home)),
-        BottomNavigationBarItem(icon: Icon(CupertinoIcons.map_pin_ellipse)),
+      items: <BottomNavigationBarItem>[
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.shopping_basket_outlined,
+            color: Styles.defaultIconColor,
+          ),
+          activeIcon: Icon(
+            Icons.shopping_basket,
+            color: Styles.defaultIconColor,
+          ),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.account_circle_outlined,
+            color: Styles.defaultIconColor,
+          ),
+          activeIcon: Icon(
+            Icons.account_circle,
+            color: Styles.defaultIconColor,
+          ),
+        ),
       ]);
 }
 

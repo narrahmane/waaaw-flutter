@@ -15,11 +15,8 @@ class AroundTabScreen extends StatelessWidget {
             child: const Text('map'),
           ),
         ),
-        const SizedBox(
-          width: double.infinity,
-          child: ProductsPreview(
-            title: "Explore around",
-          ),
+        const ProductsPreview(
+          title: "Explore around",
         ),
       ],
     );

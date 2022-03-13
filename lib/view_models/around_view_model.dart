@@ -23,4 +23,9 @@ class AroundViewModel extends foundation.ChangeNotifier {
     _availableProducts = ProductsRepository.loadProducts(location: _location);
     notifyListeners();
   }
+
+  void clearProducts() {
+    _availableProducts = [];
+    notifyListeners();
+  }
 }

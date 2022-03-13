@@ -4,7 +4,6 @@ import 'package:waaaw/styles.dart';
 import 'package:waaaw/view_models/around_view_model.dart';
 import 'package:waaaw/views/around_tab/widgets/product_preview_item.dart';
 
-import '../../../models/product.dart';
 import '../around_tab_grid_screen.dart';
 
 class ProductsPreview extends StatelessWidget {
@@ -22,7 +21,7 @@ class ProductsPreview extends StatelessWidget {
         final products = aroundViewModel.getProducts();
 
         return Column(
-          children: <Widget>[
+          children: [
             Padding(
               padding: const EdgeInsets.only(
                 left: 8.0,
@@ -48,12 +47,12 @@ class ProductsPreview extends StatelessWidget {
             ),
             SizedBox(
               width: double.infinity,
-              height: 320,
+              height: MediaQuery.of(context).size.height * 0.35,
               child: GridView.count(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 crossAxisCount: 1,
-                childAspectRatio: 1.7,
+                childAspectRatio: 1.6,
                 children:
                     products.map(ProductPreviewItem.buildProductItem).toList(),
               ),

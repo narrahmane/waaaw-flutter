@@ -1,10 +1,8 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:waaaw/models/product.dart';
 import 'package:waaaw/styles.dart';
-import 'package:waaaw/view_models/around_view_model.dart';
 
 import '../../product_details/product_details_screen.dart';
 
@@ -18,7 +16,7 @@ class ProductPreviewItem extends StatelessWidget {
 
   static Widget buildProductItem(Product product) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
       child: ProductPreviewItem(product: product),
     );
   }
@@ -30,19 +28,23 @@ class ProductPreviewItem extends StatelessWidget {
     return GestureDetector(
       onTap: (() => _onProductPreviewItemTap(context)),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(
-            height: 250,
+          Expanded(
+            flex: 9,
             child: Image.network(
               product.coverImageUrl,
               fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 8.0),
-          Text(
-            product.name.toCapitalized(),
-            maxLines: 1,
-            style: Styles.productPreviewName,
+          Expanded(
+            flex: 1,
+            child: Text(
+              product.name.toCapitalized(),
+              maxLines: 1,
+              style: Styles.productPreviewName,
+            ),
           )
         ],
       ),

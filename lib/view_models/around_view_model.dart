@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:waaaw/models/location.dart';
 import 'package:waaaw/models/product.dart';
+import 'package:waaaw/models/shop.dart';
 import 'package:waaaw/repositories/products_repositories.dart';
 
 class AroundViewModel extends foundation.ChangeNotifier {
   List<Product> _availableProducts = [];
+  Map<String, Shop> _availableShops = {};
 
   final _location = Location(
     latitude: 48.855228,
@@ -19,13 +21,28 @@ class AroundViewModel extends foundation.ChangeNotifier {
     return _availableProducts.firstWhere((product) => product.id == id);
   }
 
+  // Returns the list of available around shops.
+  List<Shop> getShops() => List.from(_availableShops.values);
+
   void loadProducts() {
     _availableProducts = ProductsRepository.loadProducts(location: _location);
+    _availableShops.clear();
+    for (var product in _availableProducts) {
+      final shop = Shop(
+        id: product.shopId,
+        brandId: product.brandId,
+        brandProfilePictureUrl: product.brandProfilePictureUrl,
+        latitude: product.latitude,
+        longitude: product.longitude,
+      );
+      _availableShops[shop.id] = shop;
+    }
     notifyListeners();
   }
 
   void clearProducts() {
     _availableProducts = [];
+    _availableShops = {};
     notifyListeners();
   }
 }

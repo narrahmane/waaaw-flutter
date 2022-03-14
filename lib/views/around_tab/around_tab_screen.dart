@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waaaw/views/around_tab/widgets/map_preview.dart';
 import 'widgets/products_preview.dart';
 
 class AroundTabScreen extends StatelessWidget {
@@ -7,15 +8,11 @@ class AroundTabScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: const <Widget>[
         Expanded(
-          child: Container(
-            width: double.infinity,
-            color: Colors.amber,
-            child: const Text('map'),
-          ),
+          child: MapPreview(),
         ),
-        const ProductsPreview(
+        ProductsPreview(
           title: "Explore around",
         ),
       ],
